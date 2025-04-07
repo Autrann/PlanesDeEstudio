@@ -8,7 +8,7 @@ class Usuario extends Model
 {
     public $timestamps = false;
     protected $connection = "mysql";
-    protected $table = "si_cat_usuario";
+    protected $table = "usuarios";
     protected $primaryKey = "rpe";
 
     protected $fillable = [

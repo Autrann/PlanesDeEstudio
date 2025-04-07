@@ -8,7 +8,7 @@ class Carrera extends Model
 {
     public $timestamps = false;
     protected $connection = "mysql";
-    protected $table = "si_cat_carrera";
+    protected $table = "carreras";
     protected $primaryKey = "cve_carrera";
     
     protected $fillable = [

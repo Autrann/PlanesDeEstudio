@@ -47,7 +47,7 @@ class EditorController extends Controller
             $usuarios = Usuario::all();
             return view('uaslp.inicio', ['carreras' => $carreras, 'usuarios' => $usuarios]);
         } else {
-            return redirect()->route('user_editor');
+            return redirect('/')->with('alert', 'Usa rpe 1');
         }
     }
 
@@ -60,6 +60,8 @@ class EditorController extends Controller
         ]);
         return view('login');
     }
+
+    
 
     public function validar_sesion($rpe, $pass)
     {
