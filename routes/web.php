@@ -8,6 +8,9 @@ use App\Models\MateriasOptativas;
 use Illuminate\Http\Request;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 
+Route::get('/prueba_leo', function () {
+    return view('editor_leo');
+});
 Route::get('/', function () {
     return view('uaslp.login');
 });
