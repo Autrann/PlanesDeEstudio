@@ -30,7 +30,7 @@ function SelectDropDown({ options, name, containerClass, placeholder, inputClass
             <Img
                 type="icon"
                 params={{ icon: "downA" }}
-                className={`${iconClass} absolute top-1/2 -translate-y-1/2 right-[1rem] transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+                className={`${iconClass} size-8 flex items-center justify-center p-2 rounded-sm bg-[#CAD4DC] absolute top-1/2 -translate-y-1/2 right-[1rem] transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
                 onClick={toggleDropdown}
             />
 

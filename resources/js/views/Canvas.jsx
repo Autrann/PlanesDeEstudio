@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
 import Modal from "../components/organism/modal";
+import Img from "../components/atoms/Img";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,20 +27,20 @@ function Canvas() {
         backgroundSize: "20px 20px",
     };
 
-    const handleOpenModal = (e)=>{
+    const handleOpenModal = (e) => {
         e.preventDefault();
         setIsModalOpen(true);
-    }
+    };
 
-    const handleCloseModal = (e)=>{
+    const handleCloseModal = (e) => {
         e.preventDefault();
         setIsModalOpen(false);
-    }
+    };
 
     return (
         <div className="h-full w-full flex flex-col overflow-auto">
             {/* Modal */}
-            {isModalOpen && <Modal handleCloseModal={handleCloseModal}/>}
+            {isModalOpen && <Modal handleCloseModal={handleCloseModal} />}
             <div className="fixed z-10 w-full">
                 {/* Tittle */}
                 <div className="bg-[#CAD4DC] font-bold p-2">
@@ -53,13 +54,11 @@ function Canvas() {
                     {/* CONTENEDOR MENU */}
                     <div className="flex">
                         {/* Agregar materia */}
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center space-y-1">
                             {/*Icon */}
                             <div className="size-9 border-4 border-white" />
                             {/*Icon down arrow*/}
-                            <div className="w-6">
-                                <img src="images/icons/downA.webp" />
-                            </div>
+                            <Img params={{ icon:'downA' }} />
                             <p className="text-sm">Agregar Materia</p>
                         </div>
                     </div>
@@ -73,7 +72,13 @@ function Canvas() {
             >
                 <div className="flex flex-col">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, i) => {
-                        return <SchoolPeriod key={i} period={i} handleOpenModal={handleOpenModal}/>;
+                        return (
+                            <SchoolPeriod
+                                key={i}
+                                period={i}
+                                handleOpenModal={handleOpenModal}
+                            />
+                        );
                     })}
                 </div>
             </div>
