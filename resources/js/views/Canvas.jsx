@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
+import Img from "../components/atoms/Img";
+import Modal from "../components/organism/modal";
 
 function Canvas() {
     const canvasRef = useRef(null);
@@ -26,6 +28,9 @@ function Canvas() {
 
     return (
         <div className="h-full w-full flex flex-col overflow-auto">
+            {/* Modal */}
+           <Modal/>
+
             <div className="fixed z-10 w-full">
                 {/* Tittle */}
                 <div className="bg-[#CAD4DC] font-bold p-2">
@@ -58,10 +63,8 @@ function Canvas() {
                 style={pizzaraStyle}
             >
                 <div className="flex flex-col">
-                    {[1,2,3,4,5,6,7,8,9,10].map((e,i)=>{
-                        return(
-                            <SchoolPeriod key={i} period={i}/>
-                        )
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, i) => {
+                        return <SchoolPeriod key={i} period={i} />;
                     })}
                 </div>
             </div>
