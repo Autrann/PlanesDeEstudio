@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Img from "../atoms/Img";
 
-function Subjects({ Subject }) {
+function Subjects({ Subject,handleOpenModal }) {
     const [localSubject, setLocalSubject] = useState(Subject);
 
     const handleOnClickSubject = (e) =>{
         e.preventDefault();
-
+        handleOpenModal(e);
     }
 
     return (

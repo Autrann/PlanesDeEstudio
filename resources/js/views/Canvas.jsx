@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
-import Img from "../components/atoms/Img";
 import Modal from "../components/organism/modal";
 
 function Canvas() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
 
@@ -26,11 +26,20 @@ function Canvas() {
         backgroundSize: "20px 20px",
     };
 
+    const handleOpenModal = (e)=>{
+        e.preventDefault();
+        setIsModalOpen(true);
+    }
+
+    const handleCloseModal = (e)=>{
+        e.preventDefault();
+        setIsModalOpen(false);
+    }
+
     return (
         <div className="h-full w-full flex flex-col overflow-auto">
             {/* Modal */}
-           <Modal/>
-
+            {isModalOpen && <Modal handleCloseModal={handleCloseModal}/>}
             <div className="fixed z-10 w-full">
                 {/* Tittle */}
                 <div className="bg-[#CAD4DC] font-bold p-2">
@@ -64,7 +73,7 @@ function Canvas() {
             >
                 <div className="flex flex-col">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, i) => {
-                        return <SchoolPeriod key={i} period={i} />;
+                        return <SchoolPeriod key={i} period={i} handleOpenModal={handleOpenModal}/>;
                     })}
                 </div>
             </div>

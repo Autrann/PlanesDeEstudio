@@ -1,9 +1,9 @@
 import Img from "../atoms/Img";
 import SelectDropDown from "../atoms/SelectDropDown";
-function Modal() {
+function Modal({ handleCloseModal }) {
     const subjectsOptions = [
-        {value:'1',label:'1'},
-        {value:'2',label:"2"}
+        { value: "1", label: "1" },
+        { value: "2", label: "2" },
     ];
 
     return (
@@ -13,20 +13,27 @@ function Modal() {
 
             {/* Modal centrado */}
             <div className="relative z-30 w-1/2 h-1/2 bg-white p-4 rounded space-y-2">
-                <div className="flex items-center space-x-2">
-                    <Img className={"w-10"} params={{icon:"addSubject"}} />
-                    <h1 className="text-2xl font-bold">Agregar Materia</h1>
+                <div className="flex space-x-2 justify-between">
+                    <div className="flex items-center space-x-2">
+                        <Img
+                            className={"w-10"}
+                            params={{ icon: "addSubject" }}
+                        />
+                        <h1 className="text-2xl font-bold">Agregar Materia</h1>
+                    </div>
+                    <button onClick={(e) => handleCloseModal(e)}>X</button>
                 </div>
                 <h3 className="text-base text-[#A29797]">
                     Seleccionar materia a insertar
                 </h3>
                 <hr />
                 <div>
-                    <SelectDropDown 
-                    containerClass={"h-12"}
-                    options={subjectsOptions} 
-                    name={""}
-                    placeholder={"Selecciona una materia"}/>
+                    <SelectDropDown
+                        containerClass={"h-12"}
+                        options={subjectsOptions}
+                        name={""}
+                        placeholder={"Selecciona una materia"}
+                    />
                 </div>
             </div>
         </div>
