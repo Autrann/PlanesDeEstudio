@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Img from "../atoms/Img";
 
 function Subjects({ period, subject, index, handleOpenModal }) {
@@ -14,11 +13,11 @@ function Subjects({ period, subject, index, handleOpenModal }) {
                 !subject
                     ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
                     : "flex-col border-black"
-            } w-32 h-24 border-4 bg-white select-none`}
+            } w-36 h-24 border-4 bg-white select-none`}
         >
             {subject ? (
                 <>
-                    <div className="flex items-center justify-center flex-1 text-[12px] overflow-hidden">
+                    <div className="p-0.5 flex items-center justify-center flex-1 text-[12px] overflow-hidden">
                         {subject.nombreMateria}
                     </div>
                     <div className="flex justify-between border-t-2 border-black text-[12px]">

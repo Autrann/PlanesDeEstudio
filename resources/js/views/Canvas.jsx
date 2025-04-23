@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
 import CreateSubModal from "../components/organism/createSubModal";
 import Img from "../components/atoms/Img";
+import Menu from "../components/organism/Menu";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,19 +72,7 @@ function Canvas() {
                     </p>
                 </div>
                 {/* Menu principal */}
-                <div className=" bg-[#879CAC] text-white p-2">
-                    {/* CONTENEDOR MENU */}
-                    <div className="flex">
-                        {/* Agregar materia */}
-                        <div className="flex flex-col items-center space-y-1">
-                            {/*Icon */}
-                            <div className="size-9 border-4 border-white" />
-                            {/*Icon down arrow*/}
-                            <Img params={{ icon:'downA' }} />
-                            <p className="text-sm">Agregar Materia</p>
-                        </div>
-                    </div>
-                </div>
+                <Menu/>
             </div>
             {/* Canvas materias */}
             <div

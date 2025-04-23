@@ -19,7 +19,7 @@ function SchoolPeriod({ period,subjects,handleOpenModal }) {
             <div className="flex items-center justify-center w-8">
                 <p className="text-xl text-[#A29797]">{parsePeriod[period]}</p>
             </div>
-            <div className="flex border-2 border-[#A29797] p-2 space-x-2 flex-wrap">
+            <div className="flex border-2 border-[#A29797] px-4 py-2 space-x-4 flex-wrap">
                 {subjects.map((subject, index) => (
                     <Subjects 
                     key={index} 
