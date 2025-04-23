@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
-import Modal from "../components/organism/modal";
+import CreateSubModal from "../components/organism/createSubModal";
 import Img from "../components/atoms/Img";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
+    const [semesters, setSemesters] = useState(Array.from({ length: 10 }, () => Array(10).fill(null)));
+    const [selectedPosition, setSelectedPosition] = useState({ semester: null, index: null });
+
 
     useEffect(() => {
         const handleMouse = (e) => {
@@ -27,20 +30,39 @@ function Canvas() {
         backgroundSize: "20px 20px",
     };
 
-    const handleOpenModal = (e) => {
-        e.preventDefault();
+    const handleSetSubject = (parsedSubject) =>{
+        const { semester, index } = selectedPosition;
+        if (semester === null || index === null) return;
+        setSemesters(prev => {
+            const updated = [...prev];
+            updated[semester] = [...updated[semester]];
+            updated[semester][index] = parsedSubject;
+            return updated;
+          });
+          setIsModalOpen(false);
+    }
+
+    const handleOpenModal = (period,index) => {
+        setSelectedPosition({
+            semester:period,
+            index:index
+        })
         setIsModalOpen(true);
     };
 
     const handleCloseModal = (e) => {
         e.preventDefault();
+        setSelectedPosition({
+            semester:null,
+            index:null
+        })
         setIsModalOpen(false);
     };
 
     return (
         <div className="h-full w-full flex flex-col overflow-auto">
             {/* Modal */}
-            {isModalOpen && <Modal handleCloseModal={handleCloseModal} />}
+            {isModalOpen && <CreateSubModal handleCloseModal={handleCloseModal} handleSetSubject={handleSetSubject}/>}
             <div className="fixed z-10 w-full">
                 {/* Tittle */}
                 <div className="bg-[#CAD4DC] font-bold p-2">
@@ -71,11 +93,12 @@ function Canvas() {
                 style={pizzaraStyle}
             >
                 <div className="flex flex-col">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, i) => {
+                    {semesters.map((subjects, index) => {
                         return (
                             <SchoolPeriod
-                                key={i}
-                                period={i}
+                                key={index}
+                                period={index}
+                                subjects={subjects}
                                 handleOpenModal={handleOpenModal}
                             />
                         );

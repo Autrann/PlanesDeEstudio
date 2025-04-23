@@ -1,6 +1,6 @@
 import Subjects from "./subject";
 
-function SchoolPeriod({ period,handleOpenModal }) {
+function SchoolPeriod({ period,subjects,handleOpenModal }) {
     const parsePeriod = [
         "I",
         "II",
@@ -20,8 +20,14 @@ function SchoolPeriod({ period,handleOpenModal }) {
                 <p className="text-xl text-[#A29797]">{parsePeriod[period]}</p>
             </div>
             <div className="flex border-2 border-[#A29797] p-2 space-x-2 flex-wrap">
-                {Array.from({ length: 9 }).map((_, index) => (
-                    <Subjects key={index} handleOpenModal={handleOpenModal} />
+                {subjects.map((subject, index) => (
+                    <Subjects 
+                    key={index} 
+                    index={index}
+                    period={period} 
+                    subject={subject} 
+                    handleOpenModal={handleOpenModal} 
+                    />
                 ))}
             </div>
         </div>

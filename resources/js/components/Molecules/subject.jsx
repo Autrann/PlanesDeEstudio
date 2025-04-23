@@ -1,39 +1,43 @@
 import { useState } from "react";
 import Img from "../atoms/Img";
 
-function Subjects({ Subject,handleOpenModal }) {
-    const [localSubject, setLocalSubject] = useState(Subject);
+function Subjects({ period,subject,index,handleOpenModal }) {
 
     const handleOnClickSubject = (e) =>{
         e.preventDefault();
-        handleOpenModal(e);
+        handleOpenModal(period,index);
     }
 
     return (
         <div
             onClick={(e)=>handleOnClickSubject(e)}
-            className={`flex transition-all cursor-pointer  ${
-                !localSubject
+            className={`flex transition-all cursor-pointer text-center  ${
+                !subject
                     ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
-                    : "flex-col justify-between border-black"
+                    : "flex-col border-black"
             } w-32 h-20 border-4 bg-white select-none`}
         >
-            {localSubject ? (
+            {subject ? (
                 <>
-                    <div className="flex h-full items-center justify-center">
-                        {localSubject.name}
+                    <div className="flex items-center justify-center flex-1">
+                        {subject.nombreMateria}
                     </div>
-                    <div className="flex justify-between border-t-2 border-black">
-                        {[0, 1, 2, 3, 4].map((e) => {
-                            return (
-                                <div
-                                    className="border-l-2 border-black w-1/5 flex justify-center"
-                                    key={e}
-                                >
-                                    {e}
-                                </div>
-                            );
-                        })}
+                    <div className="flex justify-between border-t-2 border-black text-sm">
+                        <div className="p-0.5 border-l-2 border-black ">
+                            {subject.horasTeoria}
+                        </div>
+                        <div className="p-0.5 border-l-2 border-black ">
+                            {subject.horasPractica}
+                        </div>
+                        <div className="p-0.5 border-l-2 border-black">
+                            {subject.creditos}
+                        </div>
+                        <div className="p-0.5 border-l-2 border-black w-2/5 ">
+                            {subject.claveMateria}
+                        </div>
+                        <div className="p-0.5 border-l-2 border-black w-1/5 ">
+                            {subject.claveCacei}
+                        </div>
                     </div>
                 </>
             ) : (

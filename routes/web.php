@@ -51,4 +51,10 @@ Route::get('/inicio', [EditorController::class, 'inicio'])->name('inicio');
 
 Route::post('/inicio', [EditorController::class, 'login'])->name('login.submit');
 
+
+//New routes
+Route::get('/materias', function () {
+    return response()->json(MateriasOptativas::all());
+});
+
 require __DIR__.'/auth.php';
