@@ -30,6 +30,12 @@ function CreateSubModal({ handleCloseModal,handleSetSubject }) {
         handleSetSubject(parsedSubject)
     }
 
+    const handleLocalCloseModal = (e) =>{
+        e.preventDefault();
+        handleCloseModal();
+    }
+    
+
     return (
         <div className="fixed z-20 h-full w-full flex items-center justify-center">
             {/* Fondo con opacidad */}
@@ -45,7 +51,7 @@ function CreateSubModal({ handleCloseModal,handleSetSubject }) {
                         />
                         <h1 className="text-2xl font-bold">Agregar Materia</h1>
                     </div>
-                    <button onClick={(e) => handleCloseModal(e)}>X</button>
+                    <button onClick={(e) => handleLocalCloseModal(e)}>X</button>
                 </div>
                 <h3 className="text-base text-[#A29797]">
                     Seleccionar materia a insertar
@@ -63,7 +69,7 @@ function CreateSubModal({ handleCloseModal,handleSetSubject }) {
                                 placeholder={"Selecciona una materia"}
                             />
                             <div className="flex justify-end space-x-2 font-semibold">
-                                <button onClick={handleCloseModal} className="p-2 text-[#AFBEC9]">Cancelar</button>
+                                <button onClick={(e) => handleLocalCloseModal(e)} className="p-2 text-[#AFBEC9]">Cancelar</button>
                                 <button type="submit" className="p-2 bg-[#AFBEC9] rounded-sm text-white">Seleccionar</button>
                             </div>
                         </>

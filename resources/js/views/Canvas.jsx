@@ -5,11 +5,18 @@ import Img from "../components/atoms/Img";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [semesters, setSemesters] = useState(Array.from({ length: 10 }, () => Array(10).fill(null)));
+    const selectedPosition = useRef({ semester: null, index: null })
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
-    const [semesters, setSemesters] = useState(Array.from({ length: 10 }, () => Array(10).fill(null)));
-    const [selectedPosition, setSelectedPosition] = useState({ semester: null, index: null });
 
+
+    const pizzaraStyle = {
+        backgroundColor: "white",
+        backgroundImage: `linear-gradient(to right, gray 1px, transparent 1px), 
+           linear-gradient(to bottom, gray 1px, transparent 1px)`,
+        backgroundSize: "20px 20px",
+    };
 
     useEffect(() => {
         const handleMouse = (e) => {
@@ -23,15 +30,8 @@ function Canvas() {
         return () => window.removeEventListener("mousemove", handleMouse);
     }, []);
 
-    const pizzaraStyle = {
-        backgroundColor: "white",
-        backgroundImage: `linear-gradient(to right, gray 1px, transparent 1px), 
-           linear-gradient(to bottom, gray 1px, transparent 1px)`,
-        backgroundSize: "20px 20px",
-    };
-
     const handleSetSubject = (parsedSubject) =>{
-        const { semester, index } = selectedPosition;
+        const { semester, index } = selectedPosition.current;
         if (semester === null || index === null) return;
         setSemesters(prev => {
             const updated = [...prev];
@@ -39,23 +39,22 @@ function Canvas() {
             updated[semester][index] = parsedSubject;
             return updated;
           });
-          setIsModalOpen(false);
+          handleCloseModal();
     }
 
     const handleOpenModal = (period,index) => {
-        setSelectedPosition({
+        selectedPosition.current={
             semester:period,
             index:index
-        })
+        }
         setIsModalOpen(true);
     };
 
-    const handleCloseModal = (e) => {
-        e.preventDefault();
-        setSelectedPosition({
+    const handleCloseModal = () => {
+        selectedPosition.current={
             semester:null,
             index:null
-        })
+        }
         setIsModalOpen(false);
     };
 

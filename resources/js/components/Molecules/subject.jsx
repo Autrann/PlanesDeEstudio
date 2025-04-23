@@ -1,28 +1,27 @@
 import { useState } from "react";
 import Img from "../atoms/Img";
 
-function Subjects({ period,subject,index,handleOpenModal }) {
-
-    const handleOnClickSubject = (e) =>{
+function Subjects({ period, subject, index, handleOpenModal }) {
+    const handleOnClickSubject = (e) => {
         e.preventDefault();
-        handleOpenModal(period,index);
-    }
+        handleOpenModal(period, index);
+    };
 
     return (
         <div
-            onClick={(e)=>handleOnClickSubject(e)}
+            onClick={(e) => handleOnClickSubject(e)}
             className={`flex transition-all cursor-pointer text-center  ${
                 !subject
                     ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
                     : "flex-col border-black"
-            } w-32 h-20 border-4 bg-white select-none`}
+            } w-32 h-24 border-4 bg-white select-none`}
         >
             {subject ? (
                 <>
-                    <div className="flex items-center justify-center flex-1">
+                    <div className="flex items-center justify-center flex-1 text-[12px] overflow-hidden">
                         {subject.nombreMateria}
                     </div>
-                    <div className="flex justify-between border-t-2 border-black text-sm">
+                    <div className="flex justify-between border-t-2 border-black text-[12px]">
                         <div className="p-0.5 border-l-2 border-black ">
                             {subject.horasTeoria}
                         </div>
@@ -41,7 +40,7 @@ function Subjects({ period,subject,index,handleOpenModal }) {
                     </div>
                 </>
             ) : (
-                <Img className={"w-8"} params={{icon:"addSubject"}} />
+                <Img className={"w-8"} params={{ icon: "addSubject" }} />
             )}
         </div>
     );
