@@ -9,6 +9,10 @@ const UseFetch = (
     params = undefined
 ) => {
     const [loading, setLoading] = useState(false);
+    const [request,setRequest]= useState({
+        method: method,
+        params:params,
+    });
     const responseData = useRef({
         data: null,
         error: null,
@@ -22,9 +26,9 @@ const UseFetch = (
         setLoading(true);
         try {
             let tempUrl = url;
-            const pathParams = params?.pathParams || "";
-            const queryParams = params?.queryParams || "";
-
+            const pathParams = request.params?.pathParams || "";
+            const queryParams = request.params?.queryParams || "";
+            const method = request.method;
             pathParams &&
                 Object.keys(pathParams).forEach((key) => {
                     const placeholder = `:${key}`;
@@ -56,7 +60,7 @@ const UseFetch = (
         } finally {
             setLoading(false);
         }
-    }, [method]);
+    }, [request]);
 
     useEffect(() => {
         if (immediate) {
@@ -69,7 +73,15 @@ const UseFetch = (
         return () => controller.abort();
     }, [immediate]);
 
-    const execute = async () => {
+    const execute = async (method=undefined,params=undefined) => {
+        setRequest((prevState) => {
+            return {
+                ...prevState,
+                ...(method ? { method: method} : {}),
+                ...(params?.pathParams ? { pathParams: params.pathParams } : {}),
+                ...(params?.queryParams ? { queryParams: params.queryParams } : {})
+            };
+        });        
         await fetchData();
     };
 
