@@ -4,9 +4,9 @@ import UseFetch from "../../hooks/useFetch/UseFetch";
 import { useEffect, useState } from "react";
 
 function CreateSubModal({ handleCloseModal,handleSetSubject }) {
-    const { data, loading } = UseFetch("get", "getAllSubjects");
+    const { data, loading} = UseFetch("get", "getAllSubjects");
     const [subjectsOptions, setSubjectsOptions] = useState(null);
-
+    
     useEffect(() => {
         const parseSubjects = () => {
             if (!data) return;
