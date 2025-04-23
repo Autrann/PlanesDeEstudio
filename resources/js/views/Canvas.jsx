@@ -1,13 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
 import CreateSubModal from "../components/organism/createSubModal";
+import Modal from "../components/organism/Modal/Modal";
 import Menu from "../components/organism/Menu";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [semesters, setSemesters] = useState(Array.from({ length: 10 }, () => Array(10).fill(null)));
+    const [semesters, setSemesters] = useState(
+        Array.from({ length: 10 }, () => Array(10).fill(null))
+    );
     const [menuMode, setMenuMode] = useState(1);
-    const selectedPosition = useRef({ semester: null, index: null })
+    const selectedPosition = useRef({ semester: null, index: null });
+    const modalInstructions = useRef({
+        title: null,
+        subtitle: null,
+        icon: null,
+        type: null,
+    });
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
 
@@ -30,42 +39,66 @@ function Canvas() {
         return () => window.removeEventListener("mousemove", handleMouse);
     }, []);
 
-    const handleSetSubject = (parsedSubject) =>{
+    const handleSetSubject = (parsedSubject) => {
         const { semester, index } = selectedPosition.current;
         if (semester === null || index === null) return;
-        setSemesters(prev => {
+        setSemesters((prev) => {
             const updated = [...prev];
             updated[semester] = [...updated[semester]];
             updated[semester][index] = parsedSubject;
             return updated;
-          });
-          handleCloseModal();
-    }
+        });
+        console.log(parsedSubject);
+        handleCloseModal();
+    };
 
-    const handleOpenModal = (period,index) => {
-        selectedPosition.current={
-            semester:period,
-            index:index
-        }
+    const handleOpenModal = (instructions, period, index) => {
+        selectedPosition.current = {
+            semester: period,
+            index: index,
+        };
+        modalInstructions.current = instructions;
         setIsModalOpen(true);
     };
 
     const handleCloseModal = () => {
-        selectedPosition.current={
-            semester:null,
-            index:null
-        }
+        selectedPosition.current = {
+            semester: null,
+            index: null,
+        };
         setIsModalOpen(false);
     };
 
-    const handleChangeMenuMode = (mode) =>{
+    const handleChangeMenuMode = (mode) => {
         setMenuMode(mode);
-    }
+    };
+
+    const handleRenderModal = () => {
+        let children = null;
+        switch (modalInstructions.current.type) {
+            case "createSubject":
+                children = (
+                    <CreateSubModal handleSetSubject={handleSetSubject} />
+                );
+            default:
+                "";
+        }
+        return (
+            <Modal
+                modalInstructions={modalInstructions}
+                handleCloseModal={handleCloseModal}
+            >
+                {children}
+            </Modal>
+        );
+    };
 
     return (
         <div className="h-full w-full flex flex-col overflow-auto">
             {/* Modal */}
-            {isModalOpen && <CreateSubModal handleCloseModal={handleCloseModal} handleSetSubject={handleSetSubject}/>}
+            {isModalOpen && (
+                handleRenderModal()
+            )}
             <div className="fixed z-10 w-full">
                 {/* Tittle */}
                 <div className="bg-[#CAD4DC] font-bold p-2">
@@ -75,7 +108,10 @@ function Canvas() {
                     </p>
                 </div>
                 {/* Menu principal */}
-                <Menu menuMode={menuMode} handleChangeMenuMode={handleChangeMenuMode}/>
+                <Menu
+                    menuMode={menuMode}
+                    handleChangeMenuMode={handleChangeMenuMode}
+                />
             </div>
             {/* Canvas materias */}
             <div

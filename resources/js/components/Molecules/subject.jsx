@@ -3,7 +3,13 @@ import Img from "../atoms/Img";
 function Subjects({ period, subject, index, handleOpenModal }) {
     const handleOnClickSubject = (e) => {
         e.preventDefault();
-        handleOpenModal(period, index);
+        const modalInstructions = {
+            title:'Agregar Materia' ,
+            subtitle:'Seleccionar materia a insertar',
+            icon:'addSubject',
+            type:'createSubject',
+        }
+        handleOpenModal(modalInstructions,period, index);
     };
 
     return (
