@@ -3,6 +3,7 @@ import Img from "../atoms/Img";
 function Subjects({ period, subject, index, handleOpenModal }) {
     const handleOnClickSubject = (e) => {
         e.preventDefault();
+        if(subject) return;
         const modalInstructions = {
             title:'Agregar Materia' ,
             subtitle:'Seleccionar materia a insertar',
@@ -11,6 +12,25 @@ function Subjects({ period, subject, index, handleOpenModal }) {
         }
         handleOpenModal(modalInstructions,period, index);
     };
+
+    const handleCaceiBG = (ClaCA) =>{
+        switch(ClaCA){
+            case 'IA':
+                return 'bg-[#FC0000] text-white'
+            case 'CB':
+                return 'bg-[#B2A1C8] text-white '
+            case 'CI':
+                return 'bg-[#3366FF] text-white'
+            case 'CS':
+                return 'bg-[#FFFF00] text-red-900'
+            case 'CE':
+                return 'bg-[#FF6804] text-white'
+            case 'CC':
+                return 'bg-white text-black'
+            default:
+                return ''
+        }
+    }
 
     return (
         <div className={`w-full p-3`}>
@@ -40,7 +60,7 @@ function Subjects({ period, subject, index, handleOpenModal }) {
                             <div className="p-0.5 border-l-2 border-black w-2/5 ">
                                 {subject.claveMateria}
                             </div>
-                            <div className="p-0.5 border-l-2 border-black w-1/5 ">
+                            <div className={` p-0.5 border-l-2 border-black w-1/5 ${handleCaceiBG(subject.claveCacei)}`}>
                                 {subject.claveCacei}
                             </div>
                         </div>
