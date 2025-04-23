@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
 import CreateSubModal from "../components/organism/createSubModal";
-import Img from "../components/atoms/Img";
 import Menu from "../components/organism/Menu";
 
 function Canvas() {
@@ -10,7 +9,6 @@ function Canvas() {
     const selectedPosition = useRef({ semester: null, index: null })
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
-
 
     const pizzaraStyle = {
         backgroundColor: "white",
@@ -80,7 +78,7 @@ function Canvas() {
                 ref={canvasRef}
                 style={pizzaraStyle}
             >
-                <div className="flex flex-col">
+                <div className="flex flex-col ">
                     {semesters.map((subjects, index) => {
                         return (
                             <SchoolPeriod
