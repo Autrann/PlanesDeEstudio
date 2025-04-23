@@ -6,6 +6,7 @@ import Menu from "../components/organism/Menu";
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [semesters, setSemesters] = useState(Array.from({ length: 10 }, () => Array(10).fill(null)));
+    const [menuMode, setMenuMode] = useState(1);
     const selectedPosition = useRef({ semester: null, index: null })
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
@@ -57,6 +58,10 @@ function Canvas() {
         setIsModalOpen(false);
     };
 
+    const handleChangeMenuMode = (mode) =>{
+        setMenuMode(mode);
+    }
+
     return (
         <div className="h-full w-full flex flex-col overflow-auto">
             {/* Modal */}
@@ -70,7 +75,7 @@ function Canvas() {
                     </p>
                 </div>
                 {/* Menu principal */}
-                <Menu/>
+                <Menu menuMode={menuMode} handleChangeMenuMode={handleChangeMenuMode}/>
             </div>
             {/* Canvas materias */}
             <div

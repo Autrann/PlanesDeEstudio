@@ -7,7 +7,7 @@ function Subjects({ period, subject, index, handleOpenModal }) {
     };
 
     return (
-        <div className="w-full p-3">
+        <div className={`w-full p-3`}>
             <div
                 onClick={(e) => handleOnClickSubject(e)}
                 className={`flex transition-all cursor-pointer text-center  ${
