@@ -10,7 +10,7 @@ class MateriasController extends Controller
     public function index()
     {
         $materias = Materia::all();
-        return view('uaslp.pruebaMaterias', compact('materias'));
+        return response()->json($materias);
     }
 
     public function indexJSON()
