@@ -32,10 +32,20 @@ function Subjects({ period, subject, index, handleOpenModal }) {
         }
     }
 
+    const handleSubClickSubject = (e) =>{
+        e.preventDefault();
+        if(!subject) return;
+        const modalInstructions = {
+            type:'secundarySubject',
+        }
+        handleOpenModal(modalInstructions,period, index);
+    }
+
     return (
         <div className={`w-full p-3`}>
             <div
                 onClick={(e) => handleOnClickSubject(e)}
+                onContextMenu={(e)=>handleSubClickSubject(e)}
                 className={`flex transition-all cursor-pointer text-center  ${
                     !subject
                         ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"

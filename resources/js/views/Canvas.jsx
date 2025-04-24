@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
-import CreateSubModal from "../components/organism/createSubModal";
+import CreateSubModal from "../components/organism/Modal/subModals/createSubModal";
+import EditSubModal from "../components/organism/Modal/subModals/editSubModal";
 import Modal from "../components/organism/Modal/Modal";
 import Menu from "../components/organism/Menu";
+import ContextMenu from "../components/organism/ContextMenu";
 
 function Canvas() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(null);
     const [semesters, setSemesters] = useState(
         Array.from({ length: 10 }, () => Array(10).fill(null))
     );
@@ -48,17 +50,18 @@ function Canvas() {
             updated[semester][index] = parsedSubject;
             return updated;
         });
-        console.log(parsedSubject);
         handleCloseModal();
     };
 
     const handleOpenModal = (instructions, period, index) => {
-        selectedPosition.current = {
-            semester: period,
-            index: index,
-        };
+        if (!selectedPosition.current.semester) {
+            selectedPosition.current = {
+                semester: period,
+                index: index,
+            };
+        }
         modalInstructions.current = instructions;
-        setIsModalOpen(true);
+        setIsModalOpen(instructions.type);
     };
 
     const handleCloseModal = () => {
@@ -66,7 +69,7 @@ function Canvas() {
             semester: null,
             index: null,
         };
-        setIsModalOpen(false);
+        setIsModalOpen(null);
     };
 
     const handleChangeMenuMode = (mode) => {
@@ -78,7 +81,22 @@ function Canvas() {
         switch (modalInstructions.current.type) {
             case "createSubject":
                 children = (
-                    <CreateSubModal handleSetSubject={handleSetSubject} />
+                    <CreateSubModal 
+                    handleSetSubject={handleSetSubject} 
+                    handleCloseModal={handleCloseModal}/>
+                );
+                break;
+            case "editSubject":
+                children = <EditSubModal
+                handleCloseModal={handleCloseModal}/>;
+                break;
+            case "secundarySubject":
+                return (
+                    <ContextMenu
+                        handleOpenModal={handleOpenModal}
+                        mousePosition={mousePosition}
+                        handleCloseModal={handleCloseModal}
+                    />
                 );
             default:
                 "";
@@ -94,11 +112,10 @@ function Canvas() {
     };
 
     return (
-        <div className="h-full w-full flex flex-col overflow-auto">
+        <div className="relative h-full w-full flex flex-col overflow-auto">
             {/* Modal */}
-            {isModalOpen && (
-                handleRenderModal()
-            )}
+            {isModalOpen && handleRenderModal()}
+
             <div className="fixed z-10 w-full">
                 {/* Tittle */}
                 <div className="bg-[#CAD4DC] font-bold p-2">
