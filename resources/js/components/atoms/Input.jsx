@@ -9,7 +9,7 @@ function Input({
     icon,
     iconClass,
     type,
-    placeholderPosition,
+    placeholderPosition=undefined,
 }) {
     const [selectedInput, setSelectedInput] = useState(false);
     const inputRef = useRef(null);
@@ -37,7 +37,7 @@ function Input({
                         : `text-[1.2rem] top-1/2 -translate-y-1/2 text-[#616161]`
                 }`;
             case "out":
-                return `${commonStyle}`;
+                return `${commonStyle} text-[1.2rem] top-0`;
             default:
                 return "";
         }
@@ -75,7 +75,7 @@ function Input({
                 ref={inputRef}
                 className={`${inputClass} w-full text-xl ${
                     icon ? "pl-[3rem]" : "pl-[1rem]"
-                } outline-0 rounded-sm`}
+                } outline-0 rounded-lg border-[#CFC3C3]`}
                 onFocus={handleOnFocus}
                 onBlur={handleOnBlur}
             />
