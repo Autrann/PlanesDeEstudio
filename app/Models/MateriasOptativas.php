@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MateriasOptativas extends Model
 {
+    
     use HasFactory;
 
     protected $table = 'materias_optativas';
@@ -19,5 +20,11 @@ class MateriasOptativas extends Model
         'creditos',
         'claveMateria',
         'claveCacei',
+        'cve_carrera',
     ];
+
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class, 'cve_carrera', 'cve_carrera');
+    }
 }

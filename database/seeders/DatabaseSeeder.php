@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        
         // User::factory(10)->create();
 
         User::factory()->create([
@@ -107,7 +108,497 @@ class DatabaseSeeder extends Seeder
             'cve_carrera' => '75',
             'rol' => 1,
         ]);
+
+
+        $this->seedMaterias();
         
+    }
+
+    protected function seedMaterias(): void
+    {
+        $now = now();
+        DB::table('materias')->insert([
+            // 1. Química A
+            [
+                'nombreMateria' => 'Química A',
+                'horasTeoria'   => 3,
+                'horasPractica' => 2,
+                'creditos'      => 8,
+                'claveMateria'  => '0071',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 2. Matemáticas Discretas I
+            [
+                'nombreMateria' => 'Matemáticas Discretas I',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2151',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 3. Pensamiento Algoritmico
+            [
+                'nombreMateria' => 'Pensamiento Algorítmico',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2229',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 4. Temas Selectos de Matemáticas
+            [
+                'nombreMateria' => 'Temas Selectos de Matemáticas',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2150',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 5. Herramientas de Software
+            [
+                'nombreMateria' => 'Herramientas de Software',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2805',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 6. Metodología de la Investigación
+            [
+                'nombreMateria' => 'Metodología de la Investigación',
+                'horasTeoria'   => 0,
+                'horasPractica' => 4,
+                'creditos'      => 4,
+                'claveMateria'  => '1005',
+                'claveCacei'    => 'CS',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 7. Seminario de Orientación a Computación
+            [
+                'nombreMateria' => 'Seminario de Orientación a Computación',
+                'horasTeoria'   => 0,
+                'horasPractica' => 2,
+                'creditos'      => 2,
+                'claveMateria'  => '2002',
+                'claveCacei'    => 'CC',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 8. Cálculo A
+            [
+                'nombreMateria' => 'Cálculo A',
+                'horasTeoria'   => 3,
+                'horasPractica' => 2,
+                'creditos'      => 8,
+                'claveMateria'  => '0051',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 9. Matemáticas Discretas II
+            [
+                'nombreMateria' => 'Matemáticas Discretas II',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2152',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 10. Estructuras de Datos I
+            [
+                'nombreMateria' => 'Estructuras de Datos I',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2231',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 11. Álgebra B
+            [
+                'nombreMateria' => 'Álgebra B',
+                'horasTeoria'   => 3,
+                'horasPractica' => 2,
+                'creditos'      => 8,
+                'claveMateria'  => '0042',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 12. Fundamentos de Circuitos Eléctricos
+            [
+                'nombreMateria' => 'Fundamentos de Circuitos Eléctricos',
+                'horasTeoria'   => 4,
+                'horasPractica' => 2,
+                'creditos'      => 10,
+                'claveMateria'  => '2978',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 13. Inglés 1
+            [
+                'nombreMateria' => 'Inglés 1',
+                'horasTeoria'   => 0,
+                'horasPractica' => 5,
+                'creditos'      => 5,
+                'claveMateria'  => '1936',
+                'claveCacei'    => 'CC',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 14. Cálculo B
+            [
+                'nombreMateria' => 'Cálculo B',
+                'horasTeoria'   => 3,
+                'horasPractica' => 2,
+                'creditos'      => 8,
+                'claveMateria'  => '0052',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 15. Ingeniería de Software
+            [
+                'nombreMateria' => 'Ingeniería de Software',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2304',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 16. Estructuras de Datos II
+            [
+                'nombreMateria' => 'Estructuras de Datos II',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2232',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 17. Lenguajes de Programación
+            [
+                'nombreMateria' => 'Lenguajes de Programación',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2233',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 18. Dispositivos Semiconductores
+            [
+                'nombreMateria' => 'Dispositivos Semiconductores',
+                'horasTeoria'   => 4,
+                'horasPractica' => 2,
+                'creditos'      => 10,
+                'claveMateria'  => '2979',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 19. Tendencias Sociales
+            [
+                'nombreMateria' => 'Tendencias Sociales',
+                'horasTeoria'   => 0,
+                'horasPractica' => 2,
+                'creditos'      => 2,
+                'claveMateria'  => '1008',
+                'claveCacei'    => 'CS',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 20. Cálculo D
+            [
+                'nombreMateria' => 'Cálculo D',
+                'horasTeoria'   => 3,
+                'horasPractica' => 2,
+                'creditos'      => 8,
+                'claveMateria'  => '0054',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 21. Tecnología Orientada a Objetos
+            [
+                'nombreMateria' => 'Tecnología Orientada a Objetos',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2234',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 22. Algoritmos y Complejidad
+            [
+                'nombreMateria' => 'Algoritmos y Complejidad',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2235',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 23. Bases de Datos
+            [
+                'nombreMateria' => 'Bases de Datos',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2314',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 24. Fundamentos de Diseño Digital
+            [
+                'nombreMateria' => 'Fundamentos de Diseño Digital',
+                'horasTeoria'   => 4,
+                'horasPractica' => 2,
+                'creditos'      => 10,
+                'claveMateria'  => '2977',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 25. Gestión y Desarrollo Social
+            [
+                'nombreMateria' => 'Gestión y Desarrollo Social',
+                'horasTeoria'   => 0,
+                'horasPractica' => 2,
+                'creditos'      => 2,
+                'claveMateria'  => '1009',
+                'claveCacei'    => 'CS',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 26. Inglés 2
+            [
+                'nombreMateria' => 'Inglés 2',
+                'horasTeoria'   => 0,
+                'horasPractica' => 5,
+                'creditos'      => 5,
+                'claveMateria'  => '1937',
+                'claveCacei'    => 'CC',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 27. Análisis Numérico
+            [
+                'nombreMateria' => 'Análisis Numérico',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2111',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 28. Interfaces Gráficas con Aplicaciones
+            [
+                'nombreMateria' => 'Interfaces Gráficas con Aplicaciones',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2236',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 29. Gestión de Servidores y Seguridad
+            [
+                'nombreMateria' => 'Gestión de Servidores y Seguridad',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2840',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 30. Física A
+            [
+                'nombreMateria' => 'Física A',
+                'horasTeoria'   => 3,
+                'horasPractica' => 2,
+                'creditos'      => 8,
+                'claveMateria'  => '0061',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 31. Diseño Digital
+            [
+                'nombreMateria' => 'Diseño Digital',
+                'horasTeoria'   => 4,
+                'horasPractica' => 2,
+                'creditos'      => 10,
+                'claveMateria'  => '2980',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 32. Act. Artísticas, Deportivas o de Divulgación
+            [
+                'nombreMateria' => 'Act. Artísticas, Deportivas o de Divulgación',
+                'horasTeoria'   => 0,
+                'horasPractica' => 2,
+                'creditos'      => 2,
+                'claveMateria'  => '1014',
+                'claveCacei'    => 'CS',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 33. Inglés 3
+            [
+                'nombreMateria' => 'Inglés 3',
+                'horasTeoria'   => 0,
+                'horasPractica' => 5,
+                'creditos'      => 5,
+                'claveMateria'  => '1938',
+                'claveCacei'    => 'CC',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 34. Probabilidad y Estadística
+            [
+                'nombreMateria' => 'Probabilidad y Estadística',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2112',
+                'claveCacei'    => 'CB',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 35. Estructuras de Datos Avanzadas
+            [
+                'nombreMateria' => 'Estructuras de Datos Avanzadas',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2206',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 36. Diseño e Implementación de Redes
+            [
+                'nombreMateria' => 'Diseño e Implementación de Redes',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2823',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 37. Sistemas Operativos
+            [
+                'nombreMateria' => 'Sistemas Operativos',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2252',
+                'claveCacei'    => 'CI',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 38. Diseño de Microcomputadoras
+            [
+                'nombreMateria' => 'Diseño de Microcomputadoras',
+                'horasTeoria'   => 4,
+                'horasPractica' => 0,
+                'creditos'      => 8,
+                'claveMateria'  => '2981',
+                'claveCacei'    => 'IA',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 39. Arte, Cultura y Humanidades I
+            [
+                'nombreMateria' => 'Arte, Cultura y Humanidades I',
+                'horasTeoria'   => 0,
+                'horasPractica' => 2,
+                'creditos'      => 2,
+                'claveMateria'  => '1012',
+                'claveCacei'    => 'CS',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+            // 40. Inglés 4
+            [
+                'nombreMateria' => 'Inglés 4',
+                'horasTeoria'   => 0,
+                'horasPractica' => 5,
+                'creditos'      => 5,
+                'claveMateria'  => '1939',
+                'claveCacei'    => 'CC',
+                'cve_Carrera'   => 75,
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ],
+        ]);
     }
 
     

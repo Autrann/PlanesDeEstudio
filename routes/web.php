@@ -7,6 +7,8 @@ use App\Http\Controllers\EditorHoja2QMController;
 use App\Models\MateriasOptativas;
 use Illuminate\Http\Request;
 use Barryvdh\Snappy\Facades\SnappyPdf;
+use App\Http\Controllers\MateriasController;
+use App\Http\Controllers\MateriasOptativasController;
 
 Route::get('/prueba_leo', function () {
     return view('editor_leo');
@@ -56,5 +58,9 @@ Route::post('/inicio', [EditorController::class, 'login'])->name('login.submit')
 Route::get('/materias', function () {
     return response()->json(MateriasOptativas::all());
 });
+
+
+Route::resource('materias', MateriasController::class); 
+Route::resource('materias_optativas', MateriasOptativasController::class);
 
 require __DIR__.'/auth.php';
