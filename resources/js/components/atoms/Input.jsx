@@ -1,43 +1,86 @@
-export default function Input({
+import { useState, useRef } from "react";
+import Img from "./Img";
+
+function Input({
     name,
-    className,
-    options = [],
-    required = true,
-    onChange = undefined,
-    rules = undefined,
-    id,
+    containerClass,
+    placeholder,
+    inputClass,
+    icon,
+    iconClass,
+    type,
+    placeholderPosition,
 }) {
-    const inputClasname =
-        "rounded-sm outline-2 outline-[#B0896C] w-full pl-2 h-8";
+    const [selectedInput, setSelectedInput] = useState(false);
+    const inputRef = useRef(null);
+
+    const handleOnFocus = () => {
+        setSelectedInput(true);
+    };
+
+    const handleOnBlur = () => {
+        if (inputRef.current && inputRef.current.value === "") {
+            setSelectedInput(false);
+        }
+    };
+
+    const handlePlaceHolderStyle = (placeholderPosition) => {
+        let commonStyle = "transition-all pointer-events-none select-none";
+        
+        switch (placeholderPosition) {
+            case "enter":
+                return `${commonStyle} absolute ${
+                    icon ? "left-[3rem]" : "left-[1rem]"
+                } ${
+                    selectedInput
+                        ? `text-xs top-0 text-[#2B2B2B] font-bold`
+                        : `text-[1.2rem] top-1/2 -translate-y-1/2 text-[#616161]`
+                }`;
+            case "out":
+                return `${commonStyle}`;
+            default:
+                return "";
+        }
+    };
+
     return (
-        <div className={`${className}`}>
-            <label className="flex items-center text-clip truncate">
-                {name}
-                {required && <p className="text-red-600">*</p>}
-            </label>
-            {options.length > 0 ? (
-                <select
-                    className={`${inputClasname}`}
-                    id={id}
-                    name={id}
-                    required={required}
-                    onChange={onChange ? (event) => onChange(event) : undefined}
-                >
-                    {options.map((option, index) => (
-                        <option key={index} value={option.value}>
-                            {option.name}
-                        </option>
-                    ))}
-                </select>
-            ) : (
-                <input
-                    id={id}
-                    name={id}
-                    className={`${inputClasname}`}
-                    required={required}
-                    {...rules}
+        <div
+            className={`relative ${containerClass}`}
+            onClick={() => inputRef.current.focus()}
+        >
+            {/* Ícono izquierdo opcional */}
+            {icon && (
+                <Img
+                    type="icon"
+                    params={{ icon }}
+                    className={`${iconClass} absolute top-1/2 -translate-y-1/2 left-[1rem] transition-colors ${
+                        selectedInput ? "invert-0" : "invert-50"
+                    }`}
                 />
             )}
+
+            {/* Etiqueta flotante / placeholder */}
+            <p
+                className={`${handlePlaceHolderStyle(placeholderPosition)}`}
+            >
+                {placeholder}
+            </p>
+
+            {/* Campo de Input */}
+            <input
+                type={type}
+                required
+                name={name}
+                id={name}
+                ref={inputRef}
+                className={`${inputClass} w-full text-xl ${
+                    icon ? "pl-[3rem]" : "pl-[1rem]"
+                } outline-0 rounded-sm`}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
+            />
         </div>
     );
 }
+
+export default Input;

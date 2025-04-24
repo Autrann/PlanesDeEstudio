@@ -53,7 +53,7 @@ function SelectDropDown({ options, name, containerClass, placeholder, inputClass
 
             {/* Campo de selección */}
             <div
-                className={`dropdown-scroll w-full h-full border px-4 py-2 cursor-pointer ${inputClass} flex justify-center items-center`}
+                className={`dropdown-scroll w-full h-full border-2 px-4 py-2 cursor-pointer ${inputClass} flex justify-center items-center ${selected || isOpen && "border-[#AFBEC9]"}`}
                 onClick={toggleDropdown}
             >
                 {selected ? selected.label : ""}

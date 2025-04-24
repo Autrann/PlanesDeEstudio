@@ -1,9 +1,8 @@
-import Img from "../atoms/Img";
-import SelectDropDown from "../atoms/SelectDropDown";
-import UseFetch from "../../hooks/useFetch/UseFetch";
+import SelectDropDown from "../../../atoms/SelectDropDown";
+import UseFetch from "../../../../hooks/useFetch/UseFetch";
 import { useEffect, useState } from "react";
 
-function CreateSubModal({ handleSetSubject }) {
+function CreateSubModal({ handleSetSubject,handleCloseModal }) {
     const { data, loading } = UseFetch("get", "getAllSubjects");
     const [subjectsOptions, setSubjectsOptions] = useState(null);
 
@@ -26,7 +25,6 @@ function CreateSubModal({ handleSetSubject }) {
         e.preventDefault();
         const { subject } = Object.fromEntries(new FormData(e.target));
         const parsedSubject = JSON.parse(subject);
-        console.log(parsedSubject);
         handleSetSubject(parsedSubject);
     };
 
@@ -44,7 +42,7 @@ function CreateSubModal({ handleSetSubject }) {
                     />
                     <div className="flex justify-end space-x-2 font-semibold">
                         <button
-                            onClick={(e) => handleLocalCloseModal(e)}
+                            onClick={handleCloseModal}
                             className="p-2 text-[#AFBEC9]"
                         >
                             Cancelar
