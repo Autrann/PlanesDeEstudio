@@ -10,18 +10,16 @@ class MateriasController extends Controller
     public function index()
     {
         $materias = Materia::all();
-        return view('uaslp.pruebaMaterias', compact('materias'));
+
+         return view('uaslp.pruebaMaterias', compact('materias'));
     }
 
-    public function indexJSON()
+    public function getJSON()
     {
-        return response()->json(Materia::all());
+        $materias = Materia::all();
+        return response()->json($materias);
     }
 
-    public function create()
-    {
-        return view('materias.create');
-    }
 
     public function store(Request $request)
     {
@@ -33,6 +31,7 @@ class MateriasController extends Controller
             'claveMateria'   => 'required|string|max:100|unique:materias,claveMateria',
             'claveCacei'     => 'nullable|string|max:100',
             'cve_Carrera'    => 'required|exists:carreras,cve_carrera',
+            'grupo_id'       => 'required|exists:grupos,id',
         ]);
 
         Materia::create($data);
@@ -46,10 +45,6 @@ class MateriasController extends Controller
         return view('materias.show', compact('materia'));
     }
 
-    public function edit(Materia $materia)
-    {
-        return view('materias.edit', compact('materia'));
-    }
 
     public function update(Request $request, Materia $materia)
     {
@@ -61,6 +56,7 @@ class MateriasController extends Controller
             'claveMateria'   => "required|string|max:100|unique:materias,claveMateria,{$materia->id}",
             'claveCacei'     => 'nullable|string|max:100',
             'cve_Carrera'    => 'required|exists:carreras,cve_carrera',
+            'grupo_id'       => 'required|exists:grupos,id',
         ]);
 
         $materia->update($data);

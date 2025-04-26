@@ -17,9 +17,10 @@ class MateriasOptativasController extends Controller
     }
     
 
-    public function indexJSON()
+    public function getJSON()
     {
-        return response()->json(MateriasOptativas::all());
+        $materias = MateriasOptativas::all();
+        return response()->json($materias);
     }
 
 

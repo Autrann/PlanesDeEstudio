@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('claveMateria')->unique();
             $table->string('claveCacei')->nullable();
             $table->unsignedBigInteger('cve_Carrera');
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->timestamps();
 
             $table->foreign('cve_Carrera')->references('cve_carrera')->on('carreras')->onDelete('cascade');
+            $table->foreign('grupo_id')->references('id')->on('grupos')->onDelete('cascade');
         });
     }
 

@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
+use App\Models\Materia;
+use App\Models\Grupo;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         // User::factory(10)->create();
 
         User::factory()->create([
@@ -109,9 +111,15 @@ class DatabaseSeeder extends Seeder
             'rol' => 1,
         ]);
 
+        Grupo::create([
+            'color' => '#000000',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
 
         $this->seedMaterias();
-        
     }
 
     protected function seedMaterias(): void
@@ -127,6 +135,9 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '0071',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
+                'grupo_id'      => 1,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -139,6 +150,8 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2151',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -151,6 +164,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2229',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -163,6 +177,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2150',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -175,6 +190,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2805',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -187,6 +203,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1005',
                 'claveCacei'    => 'CS',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -199,6 +216,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2002',
                 'claveCacei'    => 'CC',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -211,6 +229,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '0051',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -223,6 +242,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2152',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -235,6 +255,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2231',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -247,6 +268,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '0042',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -259,6 +281,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2978',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -271,6 +294,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1936',
                 'claveCacei'    => 'CC',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -283,6 +307,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '0052',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -295,6 +320,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2304',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -307,6 +333,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2232',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -319,6 +346,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2233',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -331,6 +359,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2979',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -343,6 +372,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1008',
                 'claveCacei'    => 'CS',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -355,6 +385,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '0054',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -367,6 +398,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2234',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -379,6 +411,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2235',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -391,6 +424,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2314',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -403,6 +437,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2977',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -415,6 +450,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1009',
                 'claveCacei'    => 'CS',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -427,6 +463,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1937',
                 'claveCacei'    => 'CC',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -439,6 +476,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2111',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -451,6 +489,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2236',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -463,6 +502,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2840',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -475,6 +515,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '0061',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -487,6 +528,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2980',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -499,6 +541,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1014',
                 'claveCacei'    => 'CS',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -511,6 +554,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1938',
                 'claveCacei'    => 'CC',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -523,6 +567,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2112',
                 'claveCacei'    => 'CB',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -535,6 +580,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2206',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -547,6 +593,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2823',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -559,6 +606,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2252',
                 'claveCacei'    => 'CI',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -571,6 +619,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '2981',
                 'claveCacei'    => 'IA',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -583,6 +632,7 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1012',
                 'claveCacei'    => 'CS',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
@@ -595,11 +645,10 @@ class DatabaseSeeder extends Seeder
                 'claveMateria'  => '1939',
                 'claveCacei'    => 'CC',
                 'cve_Carrera'   => 75,
+                'grupo_id'      => 1,
                 'created_at'    => $now,
                 'updated_at'    => $now,
             ],
         ]);
     }
-
-    
 }
