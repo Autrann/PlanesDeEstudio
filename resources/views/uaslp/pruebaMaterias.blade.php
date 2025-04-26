@@ -63,7 +63,8 @@
                     <td><input type="text" name="claveMateria"       value="{{ $m->claveMateria }}"    required></td>
                     <td><input type="text" name="claveCacei"         value="{{ $m->claveCacei }}"></td>
                     <td><input type="number" name="cve_Carrera"      value="{{ $m->cve_Carrera }}"     required></td>
-                    <td><input type="text" name="grupo"             value="{{ $m->grupo }}"></td>
+                    <td><input type="text" name="grupo" value="{{ $m->grupo->id ?? '' }}"></td>
+
 
                     <td style="white-space: nowrap;">
                         <button type="submit">Actualizar</button>
