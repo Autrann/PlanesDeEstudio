@@ -29,6 +29,8 @@
         <input type="text" name="claveCacei" value="{{ old('claveCacei') }}">
         <label>Carrera (ID):</label>
         <input type="number" name="cve_Carrera" value="{{ old('cve_Carrera') }}" required>
+        <label>Grupo:</label>
+        <input type="text" name="grupo" value="{{ old('grupo_id') }}">
         <button type="submit">Crear</button>
     </form>
 
@@ -43,6 +45,7 @@
                 <th>Clave</th>
                 <th>CACEI</th>
                 <th>Carrera</th>
+                <th>Grupo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -60,6 +63,8 @@
                     <td><input type="text" name="claveMateria"       value="{{ $m->claveMateria }}"    required></td>
                     <td><input type="text" name="claveCacei"         value="{{ $m->claveCacei }}"></td>
                     <td><input type="number" name="cve_Carrera"      value="{{ $m->cve_Carrera }}"     required></td>
+                    <td><input type="text" name="grupo"             value="{{ $m->grupo }}"></td>
+
                     <td style="white-space: nowrap;">
                         <button type="submit">Actualizar</button>
                     </td>

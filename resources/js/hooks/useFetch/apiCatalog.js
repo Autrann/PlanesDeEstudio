@@ -2,7 +2,7 @@
 
 const apiCatalog = {
     getAllSubjects: {
-      url: '/materiasGet',
+      url: '/materiasGet', //Endpoint para opts es materiasOptativasGet
     },
   };
   

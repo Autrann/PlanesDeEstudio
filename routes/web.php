@@ -61,7 +61,14 @@ Route::get('/materiasEditor', function () {
 
 
 Route::resource('materias', MateriasController::class); 
-Route::get('/materiasGet', [MateriasController::class, 'index']);
+
+//Get materias
+Route::get('/materiasGet', [MateriasController::class, 'getJSON']);
+
+//Get materias optativas
+Route::get('/materiasOptativasGet', [MateriasOptativasController::class, 'getJSON']);
+
+
 Route::resource('materias_optativas', MateriasOptativasController::class);
 
 require __DIR__.'/auth.php';
