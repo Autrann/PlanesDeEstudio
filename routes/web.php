@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use App\Http\Controllers\MateriasController;
 use App\Http\Controllers\MateriasOptativasController;
+use App\Http\Controllers\GruposController;
 
 Route::get('/prueba_leo', function () {
     return view('editor_leo');
@@ -61,14 +62,18 @@ Route::get('/materiasEditor', function () {
 
 
 Route::resource('materias', MateriasController::class); 
-
 //Get materias
 Route::get('/materiasGet', [MateriasController::class, 'getJSON']);
 
+
+Route::resource('materias_optativas', MateriasOptativasController::class);
 //Get materias optativas
 Route::get('/materiasOptativasGet', [MateriasOptativasController::class, 'getJSON']);
 
 
-Route::resource('materias_optativas', MateriasOptativasController::class);
+
+Route::resource('grupos', GruposController::class);
+//Get grupos
+Route::get('/gruposGet', [GruposController::class, 'getJSON']);
 
 require __DIR__.'/auth.php';
