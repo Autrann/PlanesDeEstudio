@@ -55,10 +55,11 @@ function Canvas() {
         html2pdf()
             .from(element)
             .set({
-                margin: 10,
+                margin: 0,
                 filename: "plan_de_estudios.pdf",
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: "mm", format: "a4", orientation:"portrait" },
+                html2canvas: { scale: 3 },
+                precision: 16,
+                jsPDF: { unit: "mm", format: "b4", orientation:"landscape" },
             })
             .save();
     };
