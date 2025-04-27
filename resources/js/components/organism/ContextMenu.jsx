@@ -2,7 +2,7 @@ import Img from "../atoms/Img";
 
 const ContextMenu = ({ handleOpenModal,mousePosition, handleCloseModal }) => {
 
-    const handleOnClick = (e) =>{
+    const handleOnEditClick = (e) =>{
         e.preventDefault();
         const modalInstructions = {
             title:'Editar Materia' ,
@@ -12,6 +12,18 @@ const ContextMenu = ({ handleOpenModal,mousePosition, handleCloseModal }) => {
         }
         handleOpenModal(modalInstructions);
     }
+
+    const handleOnDeleteClick = (e)=>{
+        e.preventDefault();
+        const modalInstructions = {
+            title:'Borrar Materia' ,
+            subtitle:'Elimina la materia',
+            icon:'addSubject',
+            type:'deleteSubject',
+        }
+        handleOpenModal(modalInstructions);
+    }
+    
 
     return (
         <div
@@ -30,12 +42,12 @@ const ContextMenu = ({ handleOpenModal,mousePosition, handleCloseModal }) => {
                     <div className="size-6 border-2 border-white"/>
                     <p className="w-full">Tipo Materia</p>
                 </button>
-                <button onClick={(e)=>handleOnClick(e)} className="flex space-x-4 hover:bg-[#879CAC] rounded-sm p-2 cursor-pointer transition-colors">
+                <button onClick={(e)=>handleOnEditClick(e)} className="flex space-x-4 hover:bg-[#879CAC] rounded-sm p-2 cursor-pointer transition-colors">
                     {/* Icon */}
                     <Img params={{icon:'edit'}} className={"size-6"}/>
                     <p className="w-full">Editar</p>
                 </button>
-                <button className="flex space-x-4 hover:bg-[#879CAC] rounded-sm p-2 cursor-pointer transition-colors">
+                <button onClick={(e)=>handleOnDeleteClick(e)} className="flex space-x-4 hover:bg-[#879CAC] rounded-sm p-2 cursor-pointer transition-colors">
                     {/* Icon */}
                     <Img params={{icon:'trash'}} className={"size-6"}/>
                     <p className="w-full">Eliminar</p>

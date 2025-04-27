@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import SchoolPeriod from "../components/Molecules/schoolPeriod";
 import CreateSubModal from "../components/organism/Modal/subModals/createSubModal";
 import EditSubModal from "../components/organism/Modal/subModals/editSubModal";
+import DeleteSubModal from "../components/organism/Modal/subModals/deleteSubModal";
 import Modal from "../components/organism/Modal/Modal";
 import Menu from "../components/organism/Menu";
 import ContextMenu from "../components/organism/ContextMenu";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(null);
+    const [page, setPage] = useState(false);
     const [semesters, setSemesters] = useState(
         Array.from({ length: 10 }, () => Array(10).fill(null))
     );
@@ -41,6 +43,10 @@ function Canvas() {
         return () => window.removeEventListener("mousemove", handleMouse);
     }, []);
 
+    const handleSetPage = () => {
+        setPage((prevState) => !prevState);
+    };
+
     const handleSetSubject = (parsedSubject) => {
         const { semester, index } = selectedPosition.current;
         if (semester === null || index === null) return;
@@ -53,8 +59,20 @@ function Canvas() {
         handleCloseModal();
     };
 
+    const handleDeleteSubject = () => {
+        const { semester, index } = selectedPosition.current;
+        if (semester === null || index === null) return;
+        setSemesters((prev) => {
+            const updated = [...prev];
+            updated[semester] = [...updated[semester]];
+            updated[semester][index] = null;
+            return updated;
+        });
+        handleCloseModal();
+    };
+
     const handleOpenModal = (instructions, period, index) => {
-        if (!selectedPosition.current.semester) {
+        if (selectedPosition.current.semester === null) {
             selectedPosition.current = {
                 semester: period,
                 index: index,
@@ -81,14 +99,22 @@ function Canvas() {
         switch (modalInstructions.current.type) {
             case "createSubject":
                 children = (
-                    <CreateSubModal 
-                    handleSetSubject={handleSetSubject} 
-                    handleCloseModal={handleCloseModal}/>
+                    <CreateSubModal
+                        handleSetSubject={handleSetSubject}
+                        handleCloseModal={handleCloseModal}
+                    />
                 );
                 break;
             case "editSubject":
-                children = <EditSubModal
-                handleCloseModal={handleCloseModal}/>;
+                children = <EditSubModal handleCloseModal={handleCloseModal} />;
+                break;
+            case "deleteSubject":
+                children = (
+                    <DeleteSubModal
+                        handleCloseModal={handleCloseModal}
+                        handleDeleteSubject={handleDeleteSubject}
+                    />
+                );
                 break;
             case "secundarySubject":
                 return (
@@ -128,27 +154,33 @@ function Canvas() {
                 <Menu
                     menuMode={menuMode}
                     handleChangeMenuMode={handleChangeMenuMode}
+                    handleSetPage={handleSetPage}
+                    page={page}
                 />
             </div>
             {/* Canvas materias */}
-            <div
-                className="mt-36 grow w-[2000px] p-4"
-                ref={canvasRef}
-                style={pizzaraStyle}
-            >
-                <div className="flex flex-col ">
-                    {semesters.map((subjects, index) => {
-                        return (
-                            <SchoolPeriod
-                                key={index}
-                                period={index}
-                                subjects={subjects}
-                                handleOpenModal={handleOpenModal}
-                            />
-                        );
-                    })}
+            {page ? (
+                <></>
+            ) : (
+                <div
+                    className="mt-36 grow w-[2000px] p-4"
+                    ref={canvasRef}
+                    style={pizzaraStyle}
+                >
+                    <div className="flex flex-col ">
+                        {semesters.map((subjects, index) => {
+                            return (
+                                <SchoolPeriod
+                                    key={index}
+                                    period={index}
+                                    subjects={subjects}
+                                    handleOpenModal={handleOpenModal}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
