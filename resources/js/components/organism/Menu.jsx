@@ -4,7 +4,8 @@ const Menu = ({
     menuMode, 
     handleChangeMenuMode,
     handleSetPage,
-    page }) => {
+    page,
+    handleCreatePDF }) => {
     const handleRenderByMenuMode = (menuMode) => {
         switch (menuMode) {
             case 1:
@@ -40,6 +41,15 @@ const Menu = ({
             <div className="flex justify-between items-center">
                 {/* CONTENEDOR MENU */}
                 <div className="flex space-x-2" onClick={handleClick}>
+                    {/* Crear pdf */}
+                    <div
+                        onClick={handleCreatePDF}
+                        className="flex flex-col items-center space-y-1 hover:bg-[#55636d] p-2 rounded-sm cursor-pointer transition-colors"
+                    >
+                        {/*Icon */}
+                        <Img params={{ icon: "seriar" }} className={"size-9"} />
+                        <p className="text-sm">Crear PDF</p>
+                    </div>
                     {/* Agregar materia */}
                     <div
                         className="flex flex-col items-center space-y-1 hover:bg-[#55636d] p-2 rounded-sm cursor-pointer transition-colors"

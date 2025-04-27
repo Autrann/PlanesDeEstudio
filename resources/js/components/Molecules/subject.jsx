@@ -1,76 +1,92 @@
 import Img from "../atoms/Img";
 
-function Subjects({ period, subject, index, handleOpenModal }) {
+function Subjects({
+    period = undefined,
+    subject,
+    index = undefined,
+    handleOpenModal = undefined,
+    containerClassName = undefined,
+}) {
     const handleOnClickSubject = (e) => {
         e.preventDefault();
-        if(subject) return;
+        if (subject) return;
         const modalInstructions = {
-            title:'Agregar Materia' ,
-            subtitle:'Seleccionar materia a insertar',
-            icon:'addSubject',
-            type:'createSubject',
-        }
-        handleOpenModal(modalInstructions,period, index);
+            title: "Agregar Materia",
+            subtitle: "Seleccionar materia a insertar",
+            icon: "addSubject",
+            type: "createSubject",
+        };
+        handleOpenModal(modalInstructions, period, index);
     };
 
-    const handleCaceiBG = (ClaCA) =>{
-        switch(ClaCA){
-            case 'IA':
-                return 'bg-[#FC0000] text-white'
-            case 'CB':
-                return 'bg-[#B2A1C8] text-white '
-            case 'CI':
-                return 'bg-[#3366FF] text-white'
-            case 'CS':
-                return 'bg-[#FFFF00] text-red-900'
-            case 'CE':
-                return 'bg-[#FF6804] text-white'
-            case 'CC':
-                return 'bg-white text-black'
+    const handleCaceiBG = (ClaCA) => {
+        switch (ClaCA) {
+            case "IA":
+                return "bg-[#FC0000] text-white";
+            case "CB":
+                return "bg-[#B2A1C8] text-white ";
+            case "CI":
+                return "bg-[#3366FF] text-white";
+            case "CS":
+                return "bg-[#FFFF00] text-red-900";
+            case "CE":
+                return "bg-[#FF6804] text-white";
+            case "CC":
+                return "bg-white text-black";
             default:
-                return ''
+                return "";
         }
-    }
+    };
 
-    const handleSubClickSubject = (e) =>{
+    const handleSubClickSubject = (e) => {
         e.preventDefault();
-        if(!subject) return;
+        if (!subject) return;
         const modalInstructions = {
-            type:'secundarySubject',
-        }
-        handleOpenModal(modalInstructions,period, index);
-    }
+            type: "secundarySubject",
+        };
+        handleOpenModal(modalInstructions, period, index);
+    };
 
     return (
-        <div className={`w-full p-3`}>
+        <div className={`${containerClassName} w-full`}>
             <div
-                onClick={(e) => handleOnClickSubject(e)}
-                onContextMenu={(e)=>handleSubClickSubject(e)}
-                className={`flex transition-all cursor-pointer text-center  ${
+                onClick={
+                    handleOpenModal ? (e) => handleOnClickSubject(e) : () => {}
+                }
+                onContextMenu={
+                    handleOpenModal ? (e) => handleSubClickSubject(e) : () => {}
+                }
+                className={`flex transition-all ${
+                    handleOpenModal && "cursor-pointer"
+                } text-center  ${
                     !subject
                         ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
                         : "flex-col border-black"
-                } w-full h-24 border-4 bg-white select-none`}
+                } w-full h-full border-2 bg-white select-none rounded-lg`}
             >
                 {subject ? (
                     <>
-                        <div className="p-0.5 flex items-center justify-center flex-1 text-[12px] overflow-hidden">
+                        <div className="p-0.5 flex flex-1 items-center justify-center text-[12px] overflow-hidden">
                             {subject.nombreMateria}
                         </div>
-                        <div className="flex justify-between border-t-2 border-black text-[12px]">
-                            <div className="p-0.5 border-l-2 border-black ">
+                        <div className="grid grid-cols-7 text-[12px] border-t-2 border-black">
+                            <div className="border-l-2 border-black">
                                 {subject.horasTeoria}
                             </div>
-                            <div className="p-0.5 border-l-2 border-black ">
+                            <div className="border-l-2 border-black ">
                                 {subject.horasPractica}
                             </div>
-                            <div className="p-0.5 border-l-2 border-black">
+                            <div className="border-l-2 border-black">
                                 {subject.creditos}
                             </div>
-                            <div className="p-0.5 border-l-2 border-black w-2/5 ">
+                            <div className="col-span-2 border-l-2 border-black">
                                 {subject.claveMateria}
                             </div>
-                            <div className={` p-0.5 border-l-2 border-black w-1/5 ${handleCaceiBG(subject.claveCacei)}`}>
+                            <div
+                                className={`col-span-2 border-l-2 border-black ${handleCaceiBG(
+                                    subject.claveCacei
+                                )}`}
+                            >
                                 {subject.claveCacei}
                             </div>
                         </div>

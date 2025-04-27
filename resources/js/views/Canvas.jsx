@@ -6,13 +6,15 @@ import DeleteSubModal from "../components/organism/Modal/subModals/deleteSubModa
 import Modal from "../components/organism/Modal/Modal";
 import Menu from "../components/organism/Menu";
 import ContextMenu from "../components/organism/ContextMenu";
+import StudyPlanTempleate from "../components/templates/studyPlanTempleate";
+import html2pdf from "html2pdf.js";
 
 function Canvas() {
     const [isModalOpen, setIsModalOpen] = useState(null);
     const [page, setPage] = useState(false);
     const [semesters, setSemesters] = useState(
-        Array.from({ length: 10 }, () => Array(10).fill(null))
-    );
+        Array.from({ length: 10 }, () => ({ creditos: 0, courses: Array(7).fill(null) }))
+      );
     const [menuMode, setMenuMode] = useState(1);
     const selectedPosition = useRef({ semester: null, index: null });
     const modalInstructions = useRef({
@@ -47,13 +49,28 @@ function Canvas() {
         setPage((prevState) => !prevState);
     };
 
+    const handleCreatePDF = () => {
+        const element = document.getElementById("planEstudios");
+        element.classList.remove("hidden")
+        html2pdf()
+            .from(element)
+            .set({
+                margin: 10,
+                filename: "plan_de_estudios.pdf",
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: "mm", format: "a4", orientation:"portrait" },
+            })
+            .save();
+    };
+
     const handleSetSubject = (parsedSubject) => {
         const { semester, index } = selectedPosition.current;
         if (semester === null || index === null) return;
         setSemesters((prev) => {
             const updated = [...prev];
-            updated[semester] = [...updated[semester]];
-            updated[semester][index] = parsedSubject;
+            updated[semester].courses = [...updated[semester].courses];
+            updated[semester].creditos += parsedSubject.creditos;
+            updated[semester].courses[index] = parsedSubject;
             return updated;
         });
         handleCloseModal();
@@ -64,8 +81,8 @@ function Canvas() {
         if (semester === null || index === null) return;
         setSemesters((prev) => {
             const updated = [...prev];
-            updated[semester] = [...updated[semester]];
-            updated[semester][index] = null;
+            updated[semester].courses = [...updated[semester].courses];
+            updated[semester].courses[index] = null;
             return updated;
         });
         handleCloseModal();
@@ -156,6 +173,7 @@ function Canvas() {
                     handleChangeMenuMode={handleChangeMenuMode}
                     handleSetPage={handleSetPage}
                     page={page}
+                    handleCreatePDF={handleCreatePDF}
                 />
             </div>
             {/* Canvas materias */}
@@ -163,17 +181,17 @@ function Canvas() {
                 <></>
             ) : (
                 <div
-                    className="mt-36 grow w-[2000px] p-4"
+                    className="mt-36 grow w-full p-4"
                     ref={canvasRef}
                     style={pizzaraStyle}
                 >
-                    <div className="flex flex-col ">
-                        {semesters.map((subjects, index) => {
+                    <div className="flex flex-col">
+                        {semesters.map((semester, index) => {
                             return (
                                 <SchoolPeriod
                                     key={index}
                                     period={index}
-                                    subjects={subjects}
+                                    semester={semester}
                                     handleOpenModal={handleOpenModal}
                                 />
                             );
@@ -181,6 +199,7 @@ function Canvas() {
                     </div>
                 </div>
             )}
+            <StudyPlanTempleate semesters={semesters}/>
         </div>
     );
 }
