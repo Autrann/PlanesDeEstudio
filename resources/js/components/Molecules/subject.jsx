@@ -47,6 +47,7 @@ function Subjects({
         handleOpenModal(modalInstructions, period, index);
     };
 
+
     return (
         <div className={`${containerClassName} w-full`}>
             <div
@@ -64,9 +65,9 @@ function Subjects({
                             ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
                             : "border-white"
                         : "flex-col border-black"} 
-                        ${subject.tipoMateria === "dfm" ? "border-4" :
-                            subject.tipoMateria ==="common" ? "border-4 border-double" :
-                            subject.tipoMateria === "ing" ? "border-2 border-dashed" : "border-2"
+                        ${subject && subject.tipoMateria === "dfm" ? "border-4" :
+                            subject && subject.tipoMateria ==="common" ? "border-4 border-double" :
+                            subject && subject.tipoMateria === "ing" ? "border-2 border-dashed" : "border-2"
                         } w-full h-full  bg-white select-none rounded-lg `}
             >
                 {subject ? (
