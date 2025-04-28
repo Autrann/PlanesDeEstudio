@@ -32,7 +32,7 @@ const StudyPlanTempleate = ({ semesters }) => {
                             <h2 className="text-xl font-semibold w-[2%] mr-1">
                                 {index + 1}
                             </h2>
-                            <div className="grid grid-cols-8 w-full">
+                            <div className="grid grid-cols-8 w-3/4">
                                 {semester.courses.map((subject, idx) => {
                                     return (
                                         <Subjects

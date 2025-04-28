@@ -60,7 +60,7 @@ function Subjects({
                     handleOpenModal && "cursor-pointer"
                 } text-center  ${
                     !subject
-                        ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
+                        ? handleOpenModal ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]" : "border-white"
                         : "flex-col border-black"
                 } w-full h-full border-2 bg-white select-none rounded-lg`}
             >
@@ -70,7 +70,7 @@ function Subjects({
                             {subject.nombreMateria}
                         </div>
                         <div className="grid grid-cols-7 text-[12px] border-t-2 border-black">
-                            <div className="border-l-2 border-black">
+                            <div className={`border-l-2 border-black ${!handleOpenModal && "pb-1"}`}>
                                 {subject.horasTeoria}
                             </div>
                             <div className="border-l-2 border-black ">
@@ -92,6 +92,7 @@ function Subjects({
                         </div>
                     </>
                 ) : (
+                    handleOpenModal &&
                     <Img className={"w-8"} params={{ icon: "addSubject" }} />
                 )}
             </div>

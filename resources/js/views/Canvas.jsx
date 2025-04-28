@@ -57,7 +57,7 @@ function Canvas() {
             .set({
                 margin: 0,
                 filename: "plan_de_estudios.pdf",
-                html2canvas: { scale: 3 },
+                html2canvas: { scale: 1 },
                 precision: 16,
                 jsPDF: { unit: "mm", format: "b4", orientation:"landscape" },
             })
