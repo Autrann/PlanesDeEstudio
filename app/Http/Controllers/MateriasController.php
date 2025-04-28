@@ -31,6 +31,7 @@ class MateriasController extends Controller
             'claveMateria'   => 'required|string|max:100|unique:materias,claveMateria',
             'claveCacei'     => 'nullable|string|max:100',
             'cve_Carrera'    => 'required|exists:carreras,cve_carrera',
+            'tipoMateria'    => 'required|string|in:carrera,opcion',
             'grupo_id'       => 'required|exists:grupos,id',
         ]);
 
@@ -56,6 +57,7 @@ class MateriasController extends Controller
             'claveMateria'   => "required|string|max:100|unique:materias,claveMateria,{$materia->id}",
             'claveCacei'     => 'nullable|string|max:100',
             'cve_Carrera'    => 'required|exists:carreras,cve_carrera',
+            'tipoMateria'    => 'required|string|in:carrera,opcion',
             'grupo_id'       => 'required|exists:grupos,id',
         ]);
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('creditos');
             $table->string('claveMateria')->unique();
             $table->string('claveCacei')->nullable();
+            $table->string('tipoMateria')->default('carrera');
             $table->unsignedBigInteger('cve_Carrera');
             $table->unsignedBigInteger('grupo_id')->nullable();
             $table->timestamps();
