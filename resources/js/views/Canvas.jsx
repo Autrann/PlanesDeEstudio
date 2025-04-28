@@ -52,7 +52,8 @@ function Canvas() {
 
     const handleCreatePDF = () => {
         const element = document.getElementById("planEstudios");
-        element.classList.remove("mt-36")
+        element.classList.remove("mt-36");
+    
         html2pdf()
             .from(element)
             .set({
@@ -60,11 +61,22 @@ function Canvas() {
                 filename: "plan_de_estudios.pdf",
                 html2canvas: { scale: 3 },
                 precision: 16,
-                jsPDF: { unit: "mm", format: [320, 450], orientation:"landscape" },
+                jsPDF: { unit: "mm", format: [320, 450], orientation: "landscape" },
             })
-            .save();
-
+            .outputPdf('blob')
+            .then((pdfBlob) => {
+                const pdfUrl = URL.createObjectURL(pdfBlob);
+    
+                window.open(pdfUrl);
+    
+                element.classList.add("mt-36");
+            })
+            .catch((error) => {
+                console.error("Error generando PDF:", error);
+                element.classList.add("mt-36");
+            });
     };
+    
 
     const handleSetSubject = (parsedSubject) => {
         const { semester, index } = selectedPosition.current;
