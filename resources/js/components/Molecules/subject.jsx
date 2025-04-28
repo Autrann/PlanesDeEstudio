@@ -60,17 +60,26 @@ function Subjects({
                     handleOpenModal && "cursor-pointer"
                 } text-center  ${
                     !subject
-                        ? handleOpenModal ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]" : "border-white"
-                        : "flex-col border-black"
-                } w-full h-full border-2 bg-white select-none rounded-lg`}
+                        ? handleOpenModal
+                            ? "hover:bg-[#b0cadf] items-center justify-center border-dashed border-[#879CAC]"
+                            : "border-white"
+                        : "flex-col border-black"} 
+                        ${subject.tipoMateria === "dfm" ? "border-4" :
+                            subject.tipoMateria ==="common" ? "border-4 border-double" :
+                            subject.tipoMateria === "ing" ? "border-2 border-dashed" : "border-2"
+                        } w-full h-full  bg-white select-none rounded-lg `}
             >
                 {subject ? (
                     <>
                         <div className="p-0.5 flex flex-1 items-center justify-center text-[12px] overflow-hidden">
-                            {subject.nombreMateria}
+                                {subject.nombreMateria}
                         </div>
                         <div className="grid grid-cols-7 text-[12px] border-t-2 border-black">
-                            <div className={`border-l-2 border-black ${!handleOpenModal && "pb-1"}`}>
+                            <div
+                                className={`border-l-2 border-black ${
+                                    !handleOpenModal && "pb-1"
+                                }`}
+                            >
                                 {subject.horasTeoria}
                             </div>
                             <div className="border-l-2 border-black ">
@@ -92,8 +101,12 @@ function Subjects({
                         </div>
                     </>
                 ) : (
-                    handleOpenModal &&
-                    <Img className={"w-8"} params={{ icon: "addSubject" }} />
+                    handleOpenModal && (
+                        <Img
+                            className={"w-8"}
+                            params={{ icon: "addSubject" }}
+                        />
+                    )
                 )}
             </div>
         </div>
