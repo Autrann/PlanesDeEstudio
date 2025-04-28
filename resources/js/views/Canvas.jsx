@@ -179,7 +179,9 @@ function Canvas() {
             </div>
             {/* Canvas materias */}
             {page ? (
-                <></>
+                <div className="mt-36 grow w-full p-4">
+                    
+                </div>
             ) : (
                 <div
                     className="mt-36 grow w-full p-4"
