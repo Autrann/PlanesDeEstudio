@@ -21,6 +21,7 @@ class Materia extends Model
         'creditos',
         'claveMateria',
         'claveCacei',
+        'tipoMateria',
         'cve_Carrera',
         'grupo_id',
     ];
