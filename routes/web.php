@@ -76,4 +76,5 @@ Route::resource('grupos', GruposController::class);
 //Get grupos
 Route::get('/gruposGet', [GruposController::class, 'getJSON']);
 
+
 require __DIR__.'/auth.php';

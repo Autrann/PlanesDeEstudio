@@ -57,6 +57,14 @@ const StudyPlanTempleate = ({ semesters }) => {
                     })}
                 </div>
 
+                <div className="mt-10 flex justify-center">
+                            <img
+                            src="/images/leyenda.png"
+                            alt="Leyenda de Clasificaciones"
+                            className="w-[90%] h-auto object-contain"
+                            />
+                            </div>
+
                 <div className="text-right mt-12">
                     <p>
                         Fecha de generación: {new Date().toLocaleDateString()}
