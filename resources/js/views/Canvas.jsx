@@ -57,9 +57,9 @@ function Canvas() {
             .set({
                 margin: 0,
                 filename: "plan_de_estudios.pdf",
-                html2canvas: { scale: 1 },
+                html2canvas: { scale: 3 },
                 precision: 16,
-                jsPDF: { unit: "mm", format: "b4", orientation:"landscape" },
+                jsPDF: { unit: "mm", format: [320, 450], orientation:"landscape" },
             })
             .save();
     };
