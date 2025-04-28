@@ -7,6 +7,7 @@ import Modal from "../components/organism/Modal/Modal";
 import Menu from "../components/organism/Menu";
 import ContextMenu from "../components/organism/ContextMenu";
 import StudyPlanTempleate from "../components/templates/studyPlanTempleate";
+import Subjects from "../components/Molecules/subject";
 import html2pdf from "html2pdf.js";
 
 function Canvas() {
@@ -51,7 +52,7 @@ function Canvas() {
 
     const handleCreatePDF = () => {
         const element = document.getElementById("planEstudios");
-        element.classList.remove("hidden")
+        element.classList.remove("mt-36")
         html2pdf()
             .from(element)
             .set({
@@ -62,6 +63,7 @@ function Canvas() {
                 jsPDF: { unit: "mm", format: "b4", orientation:"landscape" },
             })
             .save();
+
     };
 
     const handleSetSubject = (parsedSubject) => {
@@ -179,9 +181,7 @@ function Canvas() {
             </div>
             {/* Canvas materias */}
             {page ? (
-                <div className="mt-36 grow w-full p-4">
-                    
-                </div>
+                <StudyPlanTempleate semesters={semesters}/>
             ) : (
                 <div
                     className="mt-36 grow w-full p-4"
@@ -202,7 +202,6 @@ function Canvas() {
                     </div>
                 </div>
             )}
-            <StudyPlanTempleate semesters={semesters}/>
         </div>
     );
 }

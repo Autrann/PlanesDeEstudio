@@ -3,7 +3,7 @@ import Subjects from "../Molecules/subject";
 
 const StudyPlanTempleate = ({ semesters }) => {
     return (
-        <div id="planEstudios" className="z-10">
+        <div id="planEstudios" className="mt-36 w-full">
             <div className="flex flex-col p-2 bg-white text-black items-center">
                 <div className="w-full flex justify-between items-center mb-4">
                     <Img className={"w-32"} params={{ icon: "UASLP" }} />

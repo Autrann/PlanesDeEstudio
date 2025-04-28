@@ -1,11 +1,12 @@
 import Img from "../atoms/Img";
 
-const Menu = ({ 
-    menuMode, 
+const Menu = ({
+    menuMode,
     handleChangeMenuMode,
     handleSetPage,
     page,
-    handleCreatePDF }) => {
+    handleCreatePDF,
+}) => {
     const handleRenderByMenuMode = (menuMode) => {
         switch (menuMode) {
             case 1:
@@ -42,14 +43,19 @@ const Menu = ({
                 {/* CONTENEDOR MENU */}
                 <div className="flex space-x-2" onClick={handleClick}>
                     {/* Crear pdf */}
-                    <div
-                        onClick={handleCreatePDF}
-                        className="flex flex-col items-center space-y-1 hover:bg-[#55636d] p-2 rounded-sm cursor-pointer transition-colors"
-                    >
-                        {/*Icon */}
-                        <Img params={{ icon: "seriar" }} className={"size-9"} />
-                        <p className="text-sm">Crear PDF</p>
-                    </div>
+                    {page && (
+                        <div
+                            onClick={handleCreatePDF}
+                            className="flex flex-col items-center space-y-1 hover:bg-[#55636d] p-2 rounded-sm cursor-pointer transition-colors"
+                        >
+                            {/*Icon */}
+                            <Img
+                                params={{ icon: "seriar" }}
+                                className={"size-9"}
+                            />
+                            <p className="text-sm">Crear PDF</p>
+                        </div>
+                    )}
                     {/* Agregar materia */}
                     <div
                         className="flex flex-col items-center space-y-1 hover:bg-[#55636d] p-2 rounded-sm cursor-pointer transition-colors"
@@ -81,8 +87,15 @@ const Menu = ({
                 </div>
                 <div>
                     <div className="flex flex-col items-center space-y-1">
-                        <button onClick={handleSetPage} className="relative w-20 h-9 bg-[#A8B5BE] rounded-full">
-                            <div className={`absolute top-1/2 -translate-y-1/2 bg-[#D9D9D9] w-8 h-8 rounded-full transition-all duration-300 ${page ? "right-1" :"left-1"}`} />
+                        <button
+                            onClick={handleSetPage}
+                            className="relative w-20 h-9 bg-[#A8B5BE] rounded-full"
+                        >
+                            <div
+                                className={`absolute top-1/2 -translate-y-1/2 bg-[#D9D9D9] w-8 h-8 rounded-full transition-all duration-300 ${
+                                    page ? "right-1" : "left-1"
+                                }`}
+                            />
                         </button>
                         <p className="text-sm">Page</p>
                     </div>
