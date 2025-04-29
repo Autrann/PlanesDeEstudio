@@ -11,9 +11,9 @@ use App\Http\Controllers\MateriasController;
 use App\Http\Controllers\MateriasOptativasController;
 use App\Http\Controllers\GruposController;
 
-Route::get('/prueba_leo', function () {
-    return view('editor_leo');
-});
+Route::get('/prueba_2', function () {
+    return view('editor_2');
+})->name('editor2');
 Route::get('/', function () {
     return view('uaslp.login');
 });

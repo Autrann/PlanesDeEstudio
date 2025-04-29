@@ -61,7 +61,7 @@ function Canvas() {
                 filename: "plan_de_estudios.pdf",
                 html2canvas: { scale: 3 },
                 precision: 16,
-                jsPDF: { unit: "mm", format: [320, 450], orientation: "landscape" },
+                jsPDF: { unit: "mm", format: [350, 450], orientation: "landscape" },
             })
             .outputPdf('blob')
             .then((pdfBlob) => {

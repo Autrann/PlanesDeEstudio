@@ -97,7 +97,7 @@ const Menu = ({
                                 }`}
                             />
                         </button>
-                        <p className="text-sm">Page</p>
+                        <p className="text-sm">Vista previa</p>
                     </div>
                 </div>
             </div>

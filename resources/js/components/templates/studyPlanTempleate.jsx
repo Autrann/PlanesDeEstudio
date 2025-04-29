@@ -41,7 +41,7 @@ const StudyPlanTempleate = ({ semesters }) => {
                                                 index={idx}
                                                 subject={subject}
                                                 containerClassName={
-                                                    "h-20 p-1 col-span-1"
+                                                    "h-24 p-1 col-span-1"
                                                 }
                                             />
                                         );
@@ -64,13 +64,13 @@ const StudyPlanTempleate = ({ semesters }) => {
                             className="w-[90%] h-auto object-contain"
                             />
                             </div>
-
+{/* 
                 <div className="text-right mt-12">
                     <p>
                         Fecha de generación: {new Date().toLocaleDateString()}
                     </p>
                     <p className="mt-2">Firma: ________________________</p>
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -68,7 +68,7 @@ function Subjects({
                         ${subject && subject.tipoMateria === "dfm" ? "border-4" :
                             subject && subject.tipoMateria ==="common" ? "border-4 border-double" :
                             subject && subject.tipoMateria === "ing" ? "border-2 border-dashed" : "border-2"
-                        } w-full h-full  bg-white select-none rounded-lg `}
+                        } w-full h-full  bg-white select-none rounded-none `}
             >
                 {subject ? (
                     <>
