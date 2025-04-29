@@ -21,7 +21,8 @@
 </style>
 <body>
     {{-- Div contenedor donde React montará el componente --}}
-    <div id="app" class="app">
+    <div id="app" class="app" data-carrera="{{ $carrera }}"></div>
+
 
     </div>
 </body>

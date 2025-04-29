@@ -66,7 +66,7 @@
                                 <p class="card-text text-center">CVE: {{ $carrera->cve_carrera }}</p>
                             </div>
                             <div class="card-footer bg-transparent border-top-0 text-center">
-                                <a href="{{ route('editor2') }}" class="btn btn-primary">Ver plan de estudios</a>
+                                <a href="{{ route('editor2', ['carrera' => $carrera->cve_carrera]) }}" class="btn btn-primary">Ver plan de estudios</a>
                             </div>
                         </div>
                     </a>

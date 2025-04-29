@@ -11,6 +11,7 @@ import Subjects from "../components/Molecules/subject";
 import html2pdf from "html2pdf.js";
 
 function Canvas() {
+    const carrera = document.getElementById("app")?.dataset?.carrera;
     const [isModalOpen, setIsModalOpen] = useState(null);
     const [page, setPage] = useState(false);
     const [semesters, setSemesters] = useState(
@@ -44,6 +45,10 @@ function Canvas() {
         };
         window.addEventListener("mousemove", handleMouse);
         return () => window.removeEventListener("mousemove", handleMouse);
+    }, []);
+
+    useEffect(() => {
+        console.log("Clave de carrera recibida:", carrera);
     }, []);
 
     const handleSetPage = () => {
