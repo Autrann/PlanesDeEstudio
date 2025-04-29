@@ -96,7 +96,10 @@ function Canvas() {
         if (semester === null || index === null) return;
         setSemesters((prev) => {
             const updated = [...prev];
-            updated[semester].courses = [...updated[semester].courses];
+            const subject = updated[semester].courses[index];
+            if (subject) {
+                updated[semester].creditos -= subject.creditos;
+            }
             updated[semester].courses[index] = null;
             return updated;
         });
