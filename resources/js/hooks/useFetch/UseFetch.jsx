@@ -1,18 +1,25 @@
-import { useCallback, useRef, useState,useEffect } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import apiCatalog from "./apiCatalog";
 import axios from 'axios';
 
-const UseFetch = (
+/**
+ * Custom hook for HTTP requests using axios and apiCatalog.
+ * Supports pathParams, queryParams, and request body (data).
+ */
+const useFetch = (
     method = "get",
     endPoint,
     immediate = true,
-    params = undefined
+    params = {}
 ) => {
     const [loading, setLoading] = useState(false);
-    const [request,setRequest]= useState({
-        method: method,
-        params:params,
+    const [request, setRequest] = useState({
+        method,
+        pathParams: params.pathParams,
+        queryParams: params.queryParams,
+        data: params.data,
     });
+
     const responseData = useRef({
         data: null,
         error: null,
@@ -20,30 +27,32 @@ const UseFetch = (
 
     const controller = new AbortController();
     const baseUrl = import.meta.env.VITE_API_BACK;
-    const url = apiCatalog[endPoint]?.url || "";
+    const urlTemplate = apiCatalog[endPoint]?.url || "";
 
     const fetchData = useCallback(async () => {
         setLoading(true);
         try {
-            let tempUrl = url;
-            const pathParams = request.params?.pathParams || "";
-            const queryParams = request.params?.queryParams || "";
-            const method = request.method;
-            pathParams &&
-                Object.keys(pathParams).forEach((key) => {
-                    const placeholder = `:${key}`;
-                    if (tempUrl.includes(placeholder)) {
-                        tempUrl = tempUrl.replace(placeholder, pathParams[key]);
-                    }
+            // Build the URL with any path parameters
+            let tempUrl = urlTemplate;
+            if (request.pathParams) {
+                Object.entries(request.pathParams).forEach(([key, value]) => {
+                    tempUrl = tempUrl.replace(`:${key}`, value);
                 });
-
+            }
             const fullUrl = `${baseUrl}${tempUrl}`;
-            const response = await axios({
-                method,
+
+            // Configure axios options
+            const axiosConfig = {
+                method: request.method,
                 url: fullUrl,
                 signal: controller.signal,
-                ...(queryParams && { params: queryParams }),
-            });
+                // Attach query parameters if provided
+                ...(request.queryParams && { params: request.queryParams }),
+                // Attach request body for POST/PUT if provided
+                ...(request.data && { data: request.data }),
+            };
+
+            const response = await axios(axiosConfig);
             responseData.current = {
                 data: response.data,
                 error: null,
@@ -60,28 +69,27 @@ const UseFetch = (
         } finally {
             setLoading(false);
         }
-    }, [request]);
+    }, [request, urlTemplate]);
 
     useEffect(() => {
         if (immediate) {
-            const fetch = async () => {
-                await fetchData();
-            };
-            fetch();
+            fetchData();
         }
-
         return () => controller.abort();
-    }, [immediate]);
+    }, [immediate, fetchData]);
 
-    const execute = async (method=undefined,params=undefined) => {
-        setRequest((prevState) => {
-            return {
-                ...prevState,
-                ...(method ? { method: method} : {}),
-                ...(params?.pathParams ? { pathParams: params.pathParams } : {}),
-                ...(params?.queryParams ? { queryParams: params.queryParams } : {})
-            };
-        });        
+    /**
+     * Execute or re-execute the request with optional overrides.
+     * @param {string} newMethod - HTTP method override
+     * @param {{ pathParams?: object, queryParams?: object, data?: any }} newParams
+     */
+    const execute = async (newMethod, newParams = {}) => {
+        setRequest(prev => ({
+            method: newMethod || prev.method,
+            pathParams: newParams.pathParams || prev.pathParams,
+            queryParams: newParams.queryParams || prev.queryParams,
+            data: newParams.data || prev.data,
+        }));
         await fetchData();
     };
 
@@ -92,4 +100,5 @@ const UseFetch = (
         execute,
     };
 };
-export default UseFetch;
+
+export default useFetch;

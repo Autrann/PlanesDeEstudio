@@ -10,6 +10,7 @@ use Barryvdh\Snappy\Facades\SnappyPdf;
 use App\Http\Controllers\MateriasController;
 use App\Http\Controllers\MateriasOptativasController;
 use App\Http\Controllers\GruposController;
+use App\Http\Controllers\Api\SaveStateController;
 
 Route::get('/editor2/{carrera}', function ($carrera) {
     return view('editor_2', ['carrera' => $carrera]);
@@ -75,6 +76,13 @@ Route::get('/materiasOptativasGet', [MateriasOptativasController::class, 'getJSO
 Route::resource('grupos', GruposController::class);
 //Get grupos
 Route::get('/gruposGet', [GruposController::class, 'getJSON']);
+
+
+
+//savestates
+
+Route::get('/plan-estudios/{carrera}', [SaveStateController::class, 'get']);
+Route::post('/plan-estudios', [SaveStateController::class, 'save']);
 
 
 require __DIR__.'/auth.php';

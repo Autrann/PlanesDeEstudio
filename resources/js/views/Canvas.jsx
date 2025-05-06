@@ -28,6 +28,10 @@ function Canvas() {
     const canvasRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
 
+    const { data, loading, error } = useFetch("get", "getPlanEstudios", true, {
+        pathParams: { carrera: "ingenieria" },
+      });
+
     const pizzaraStyle = {
         backgroundColor: "white",
         backgroundImage: `linear-gradient(to right, gray 1px, transparent 1px), 
@@ -50,6 +54,30 @@ function Canvas() {
     useEffect(() => {
         console.log("Clave de carrera recibida:", carrera);
     }, []);
+
+
+
+
+    // Al montar, carga el estado guardado para la carrera
+    useEffect(() => {
+        if (!carrera) return;
+        (async () => {
+            try {
+                const res = await fetch(`/plan-estudios/${carrera}`);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data) {
+                    setSemesters(data.state);
+                }
+            } catch (error) {
+                console.error("Error cargando el plan de estudios:", error);
+            }
+        })();
+    }, [carrera]);
+    
+
+    
+    
 
     const handleSetPage = () => {
         setPage((prevState) => !prevState);
@@ -188,6 +216,9 @@ function Canvas() {
                     <p className="text-4xl text-white">
                         PLAN DE ESTUDIO -{" "}
                         <a className="text-[#879CAC]">INGENIERIA</a>
+                        <div className="space-x-2">
+                    <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-lg">Guardar</button>
+                </div>
                     </p>
                 </div>
                 {/* Menu principal */}
